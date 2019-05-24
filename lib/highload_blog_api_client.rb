@@ -7,7 +7,8 @@ class HighloadBlogApiClient
     self.class.post(post_creating_relative_url, query: query)
   end
 
-  def users(params)
-    self.class.get("/2.2/users", params)
+  def rate_the_post(query)
+    rating_post_relative_url = Rails.application.routes.url_helpers.ratings_url(only_path: true)
+    self.class.post(rating_post_relative_url, query: query)
   end
 end

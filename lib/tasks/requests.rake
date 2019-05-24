@@ -31,4 +31,25 @@ namespace :requests do
     result_time = time.real * 1000 < MAX_TIME_FOR_RESPONSE ? (time.real * 1000).to_s.green : (time.real * 1000).to_s.red
     puts "Necessary time #{result_time} ms"
   end
+
+  desc 'Rate the post '
+  task rate_post: :environment do
+    post_id = ENV['POST_ID'].present? ? ENV['POST_ID'] : Post.pluck(:id).sample
+    rating_value = ENV['RATING_VALUE'].present? ? ENV['RATING_VALUE'] : (1..5).to_a.sample
+
+    request_params = {
+      rating: {
+        post_id: post_id,
+        value: rating_value,
+      }
+    }
+
+    time = Benchmark.measure do
+      HighloadBlogApiClient.new.rate_the_post(request_params)
+    end
+
+    result_time = time.real * 1000 < MAX_TIME_FOR_RESPONSE ? (time.real * 1000).to_s.green : (time.real * 1000).to_s.red
+    puts "Necessary time #{result_time} ms"
+  end
+
 end
