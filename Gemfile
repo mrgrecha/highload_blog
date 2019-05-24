@@ -6,12 +6,24 @@ git_source(:github) do |repo_name|
 end
 
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.1'
+gem 'rails', '~> 5.2.3'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
+# Use faker as data generator
+gem 'faker'
+# Use activerecord-import for bulk inserting data using ActiveRecord
+gem 'activerecord-import'
+
+gem 'colorize'
+
+gem 'httparty'
+
+gem 'dotenv-rails'
+
+gem 'fast_jsonapi'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
@@ -20,6 +32,7 @@ gem 'puma', '~> 3.0'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'pry'
 end
 
 group :development do
