@@ -1,4 +1,4 @@
-# As we have only 3 tables I left all seeds stuff in one file.
+# As we have only 4 tables I left all seeds stuff in one file.
 # Otherwise I suggest splitting to one file per table.
 
 COUNT_OF_USERS = 100
@@ -12,14 +12,19 @@ user_values = Array.new(COUNT_OF_USERS) { { login: Faker::Name.unique.name } }
 User.import user_values, validate: true
 puts 'Users are created'
 
+# Ip addresses
+
+ip_addresses = Array.new(COUNT_OF_IPS) { { value: Faker::Internet.unique.ip_v4_address } }
+IpAddress.import ip_addresses, validate: true
+
 # Posts
-ip_adresses = Array.new(COUNT_OF_IPS) { Faker::Internet.unique.ip_v4_address }
+
 post_values = Array.new(COUNT_OF_POSTS) do
   {
     author_id: rand(1..COUNT_OF_USERS),
     title: Faker::Lorem.words(rand(2..10)).join(' '),
     body: Faker::Lorem.paragraphs(rand(2..8)).join(' '),
-    author_ip_address: ip_adresses.sample
+    ip_address_id: rand(1..COUNT_OF_IPS)
   }
 end
 

@@ -10,19 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_23_134457) do
+ActiveRecord::Schema.define(version: 2019_05_24_105817) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "ip_addresses", force: :cascade do |t|
+    t.string "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "posts", id: :serial, force: :cascade do |t|
     t.string "title", null: false
     t.text "body", null: false
     t.integer "author_id", null: false
-    t.string "author_ip_address", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "ip_address_id"
     t.index ["author_id"], name: "index_posts_on_author_id"
+    t.index ["ip_address_id"], name: "index_posts_on_ip_address_id"
   end
 
   create_table "ratings", id: :serial, force: :cascade do |t|
