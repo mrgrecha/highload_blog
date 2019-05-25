@@ -27,10 +27,9 @@ namespace :requests do
     }
 
     time = Benchmark.measure do
-      response = HighloadBlogApiClient.new.create_post(request_params)
+      HighloadBlogApiClient.new.create_post(request_params)
     end
 
-    # puts "Response: #{response}"
     result_time = time.real * 1000 < MAX_TIME_FOR_RESPONSE ? (time.real * 1000).to_s.green : (time.real * 1000).to_s.red
     puts "Necessary time #{result_time} ms"
   end
@@ -48,10 +47,8 @@ namespace :requests do
     }
 
     time = Benchmark.measure do
-      response = HighloadBlogApiClient.new.rate_the_post(request_params)
+      HighloadBlogApiClient.new.rate_the_post(request_params)
     end
-
-    # puts "Response: #{response}"
 
     result_time = time.real * 1000 < MAX_TIME_FOR_RESPONSE ? (time.real * 1000).to_s.green : (time.real * 1000).to_s.red
     puts "Necessary time #{result_time} ms"
@@ -64,10 +61,19 @@ namespace :requests do
     request_params = { number: number }
 
     time = Benchmark.measure do
-      response = HighloadBlogApiClient.new.get_top_posts(request_params)
+      HighloadBlogApiClient.new.get_top_posts(request_params)
     end
-    # puts "Response: #{response}"
 
+    result_time = time.real * 1000 < MAX_TIME_FOR_RESPONSE ? (time.real * 1000).to_s.green : (time.real * 1000).to_s.red
+    puts "Necessary time #{result_time} ms"
+  end
+
+  desc 'Get not uniques ip addresses'
+  task get_not_uniques_ip_addresses: :environment do
+
+    time = Benchmark.measure do
+      HighloadBlogApiClient.new.get_not_uniques_ip_addresses
+    end
 
     result_time = time.real * 1000 < MAX_TIME_FOR_RESPONSE ? (time.real * 1000).to_s.green : (time.real * 1000).to_s.red
     puts "Necessary time #{result_time} ms"
