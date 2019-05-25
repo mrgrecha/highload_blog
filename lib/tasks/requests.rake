@@ -9,7 +9,7 @@ namespace :requests do
   desc 'Create a post '
   task create_post: :environment do
     author_login = ENV['AUTHOR'].present? ? ENV['AUTHOR'] : User.pluck(:login).sample
-    author_ip_address = ENV['IP_ADDRESS'].present? ? ENV['IP_ADDRESS'] : Post.pluck(:author_ip_address).sample
+    author_ip_address = ENV['IP_ADDRESS'].present? ? ENV['IP_ADDRESS'] : IpAddress.pluck(:value).sample
     post_title = ENV['POST_TITLE'].present? ? ENV['POST_TITLE'] : Faker::Lorem.words(rand(2..10)).join(' ')
     post_body = ENV['POST_BODY'].present? ? ENV['POST_BODY'] : Faker::Lorem.paragraphs(rand(2..8)).join(' ')
 
@@ -20,14 +20,17 @@ namespace :requests do
       post: {
         title: post_title,
         body: post_body,
-        author_ip_address: author_ip_address,
-      }
+      },
+      ip_address: {
+        value: author_ip_address,
+      },
     }
 
     time = Benchmark.measure do
-      HighloadBlogApiClient.new.create_post(request_params)
+      response = HighloadBlogApiClient.new.create_post(request_params)
     end
 
+    # puts "Response: #{response}"
     result_time = time.real * 1000 < MAX_TIME_FOR_RESPONSE ? (time.real * 1000).to_s.green : (time.real * 1000).to_s.red
     puts "Necessary time #{result_time} ms"
   end
@@ -45,11 +48,28 @@ namespace :requests do
     }
 
     time = Benchmark.measure do
-      HighloadBlogApiClient.new.rate_the_post(request_params)
+      response = HighloadBlogApiClient.new.rate_the_post(request_params)
     end
+
+    # puts "Response: #{response}"
 
     result_time = time.real * 1000 < MAX_TIME_FOR_RESPONSE ? (time.real * 1000).to_s.green : (time.real * 1000).to_s.red
     puts "Necessary time #{result_time} ms"
   end
 
+  desc 'Get top N the best rating posts'
+  task get_top_posts: :environment do
+    number = ENV['N'].present? ? ENV['N'] : 20
+
+    request_params = { number: number }
+
+    time = Benchmark.measure do
+      response = HighloadBlogApiClient.new.get_top_posts(request_params)
+    end
+    # puts "Response: #{response}"
+
+
+    result_time = time.real * 1000 < MAX_TIME_FOR_RESPONSE ? (time.real * 1000).to_s.green : (time.real * 1000).to_s.red
+    puts "Necessary time #{result_time} ms"
+  end
 end

@@ -15,5 +15,5 @@ test:
 production:
   <<: *default
   database: highload_blog_production
-  username: highload_blog
+  username: YOUR_USERNAME
   password: <%= ENV['HIGHLOAD_BLOG_DATABASE_PASSWORD'] %>

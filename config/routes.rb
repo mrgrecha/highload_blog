@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
-  resources :posts, only: [:create]
+  resource :post, only: [:create]
+  resources :top_rating_posts, only: [:index]
   resources :ratings, only: [:create]
 end

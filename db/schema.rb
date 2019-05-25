@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_24_105817) do
+ActiveRecord::Schema.define(version: 2019_05_25_104228) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,4 +48,18 @@ ActiveRecord::Schema.define(version: 2019_05_24_105817) do
 
   add_foreign_key "posts", "users", column: "author_id"
   add_foreign_key "ratings", "posts"
+
+  create_view "top_rating_posts", materialized: true, sql_definition: <<-SQL
+      SELECT posts.id AS post_id,
+      avg(ratings.value) AS average_rating,
+      posts.title,
+      posts.body
+     FROM (posts
+       JOIN ratings ON ((posts.id = ratings.post_id)))
+    GROUP BY posts.id
+    ORDER BY (avg(ratings.value)) DESC;
+  SQL
+  add_index "top_rating_posts", ["average_rating"], name: "index_top_rating_posts_on_average_rating"
+  add_index "top_rating_posts", ["post_id"], name: "index_top_rating_posts_on_post_id", unique: true
+
 end

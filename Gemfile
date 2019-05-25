@@ -9,6 +9,8 @@ end
 gem 'rails', '~> 5.2.3'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'
+
+gem 'scenic'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use faker as data generator
@@ -23,6 +25,8 @@ gem 'httparty'
 gem 'dotenv-rails'
 
 gem 'fast_jsonapi'
+
+gem 'whenever'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
