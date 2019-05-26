@@ -9,10 +9,11 @@ class RatingForm < BaseForm
 
   def save
     return false unless valid?
-
-    Rating.create(value: value, post_id: post_id)
-    rating_average_value = Rating.where(post_id: post_id).average(:value)
-    rating_average_value
+    ActiveRecord::Base.transaction do
+      Rating.create(value: value, post_id: post_id)
+      rating_average_value = Rating.where(post_id: post_id).average(:value)
+      rating_average_value
+    end
   end
 
   private
