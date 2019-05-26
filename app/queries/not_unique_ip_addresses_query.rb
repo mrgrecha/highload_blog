@@ -1,6 +1,3 @@
-# SELECT  ip_addresses.value, array_agg(DISTINCT(users.login)) FROM "posts" INNER JOIN "ip_addresses" ON "ip_addresses"."id" = "posts"."ip_address_id" INNER JOIN "users" ON "users"."id" = "posts"."author_id" GROUP BY ip_addresses.id HAVING (COUNT(DISTINCT(posts.author_id)) > 1)
-# Usually we have a special base class for each object class but there it will be overengineering.
-# I'd like to keep it simple as there won't be any others queries for now :)
 class NotUniqueIpAddressesQuery
 
   attr_reader :raw_records
