@@ -19,8 +19,7 @@ bundle exec rake db:migrate
 ```
 
 ## Running seeds
-There are 2 ways how to run seeds:
-For the first one you need to run rails server:
+There are 2 ways how to run seeds. For the first one you need to run rails server:
 ```
 bundle exec rails server
 ```
@@ -46,10 +45,10 @@ AVERAGE_NUMBER_OF_RATINGS_PER_POST=5
 Running seeds can take some time. Please wait until 'Done. Seeds are created' will appear.
 Then run in console:
 ```
-whenever --update-crontab --set environment='development'
+bundle exec whenever --update-crontab --set environment='development'
 ```
 It schedule cron jobs for refreshing materialized views. Please notice that it will work in development mode. It runs every minute necessary rake tasks for refreshing materialized views. Of course it's been done for easier testing locally. You can change it in config/schedule.rb and rerun script above.
-Then run server:
+Then run server(if it hasn't been running yet):
 ```
 bundle exec rails server
 ```
