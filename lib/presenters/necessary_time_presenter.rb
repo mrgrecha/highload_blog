@@ -1,12 +1,12 @@
+# frozen_string_literal: true
+
 require 'colorize'
 module Presenters
-
   MAX_TIME_FOR_RESPONSE = 100
   SECONDS_TO_MILLISECONDS = 1000
 
   class NecessaryTimePresenter
     class << self
-
       def show(time)
         time_in_milliseconds = time * SECONDS_TO_MILLISECONDS
         time_in_milliseconds < MAX_TIME_FOR_RESPONSE ? show_success(time_in_milliseconds) : show_error(time_in_milliseconds)

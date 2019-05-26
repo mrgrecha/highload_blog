@@ -1,7 +1,8 @@
-require "rails_helper"
+# frozen_string_literal: true
+
+require 'rails_helper'
 
 RSpec.describe PostForm do
-
   let(:post_form) { PostForm.new }
   let(:valid_post_attributes) {  { author_login: 'test', title: 'test', body: 'test', author_ip_address: '149.3.93.169' } }
 
@@ -16,7 +17,6 @@ RSpec.describe PostForm do
   end
 
   describe '.save' do
-
     context "when author's login is an empty string" do
       it_behaves_like 'an invalid data in request' do
         let(:invalid_post_attributes) { valid_post_attributes.merge(author_login: '') }

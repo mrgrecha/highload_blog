@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class NotUniqueIpAddressesSerializer
   attr_reader :not_unique_ip_addresses
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Made for development purposes
 # I think it should be changed in future
 ENV['RAILS_ENV'] = 'development'

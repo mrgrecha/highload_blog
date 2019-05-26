@@ -18,8 +18,8 @@ namespace :requests do
         title: post_title,
         body: post_body,
         author_login: author_login,
-        author_ip_address: author_ip_address,
-      },
+        author_ip_address: author_ip_address
+      }
     }
 
     time = Benchmark.measure do
@@ -37,7 +37,7 @@ namespace :requests do
     request_params = {
       rating: {
         post_id: post_id,
-        value: rating_value,
+        value: rating_value
       }
     }
 
@@ -66,7 +66,6 @@ namespace :requests do
 
   desc 'Get not uniques ip addresses'
   task get_not_uniques_ip_addresses: :environment do
-
     time = Benchmark.measure do
       HighloadBlogApiClient.new.get_not_uniques_ip_addresses
     end

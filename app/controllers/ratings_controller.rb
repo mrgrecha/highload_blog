@@ -1,7 +1,7 @@
-class RatingsController < ApplicationController
+# frozen_string_literal: true
 
+class RatingsController < ApplicationController
   def create
-    # TODO think about better calculations and parallel requests
     result = rating_form.save
     if result
       render json: { status: 200, post_average_rating: result }, status: :ok

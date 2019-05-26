@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class HighloadBlogApiClient
   include HTTParty
   base_uri "#{ENV['BASE_URL']}:#{ENV['PORT']}"

@@ -1,5 +1,6 @@
-class PostForm < BaseForm
+# frozen_string_literal: true
 
+class PostForm < BaseForm
   attribute :title, String
   attribute :body, String
   attribute :author_login, String

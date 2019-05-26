@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ReplaceIpAddressToIpAddresses < ActiveRecord::Migration[5.2]
   def change
     remove_column :posts, :author_ip_address
