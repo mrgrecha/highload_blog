@@ -1,7 +1,4 @@
 # Highload blog
-
-It is a test task for job application.
-
 Requirments:
 * Ruby 2.6.3
 * PostgreSQL 11.2
