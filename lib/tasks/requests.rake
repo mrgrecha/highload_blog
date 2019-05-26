@@ -23,7 +23,7 @@ namespace :requests do
     }
 
     time = Benchmark.measure do
-      HighloadBlogApiClient.new.create_post(request_params)
+      puts HighloadBlogApiClient.new.create_post(request_params)
     end
 
     Presenters::NecessaryTimePresenter.show(time.real)
@@ -42,7 +42,7 @@ namespace :requests do
     }
 
     time = Benchmark.measure do
-      HighloadBlogApiClient.new.rate_the_post(request_params)
+      puts HighloadBlogApiClient.new.rate_the_post(request_params)
     end
 
     Presenters::NecessaryTimePresenter.show(time.real)
@@ -58,6 +58,9 @@ namespace :requests do
       HighloadBlogApiClient.new.get_top_posts(request_params)
     end
 
+    # As there can a big output that can take really much time I replace it out from benchmark
+    puts HighloadBlogApiClient.new.get_top_posts(request_params)
+
     Presenters::NecessaryTimePresenter.show(time.real)
   end
 
@@ -67,6 +70,9 @@ namespace :requests do
     time = Benchmark.measure do
       HighloadBlogApiClient.new.get_not_uniques_ip_addresses
     end
+
+    # As there can a big output that can take really much time I replace it out from benchmark
+    puts HighloadBlogApiClient.new.get_not_uniques_ip_addresses
 
     Presenters::NecessaryTimePresenter.show(time.real)
   end
