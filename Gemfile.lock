@@ -50,7 +50,6 @@ GEM
       ice_nine (~> 0.11.0)
       thread_safe (~> 0.3, >= 0.3.1)
     builder (3.2.3)
-    byebug (11.0.1)
     chronic (0.10.2)
     coderay (1.1.2)
     coercible (1.0.0)
@@ -173,22 +172,21 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activerecord-import
-  byebug
-  colorize
-  dotenv-rails
-  faker
-  fast_jsonapi
-  httparty
-  pg (~> 0.18)
-  pry
-  puma (~> 3.0)
-  rails (~> 5.2.3)
+  activerecord-import (~> 1.0)
+  colorize (~> 0.8)
+  dotenv-rails (~> 2.7)
+  faker (~> 1.9)
+  fast_jsonapi (~> 1.5)
+  httparty (~> 0.16)
+  pg (~> 0.21)
+  pry (~> 0.11)
+  puma (~> 3.12)
+  rails (~> 5.2)
   rspec-rails (~> 3.8)
-  scenic
+  scenic (~> 1.5)
   tzinfo-data
-  virtus
-  whenever
+  virtus (~> 1.0)
+  whenever (~> 0.11)
 
 BUNDLED WITH
    1.17.3
