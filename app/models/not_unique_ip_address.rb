@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class NotUniqueIpAddress < ActiveRecord::Base
   self.primary_key = :id
 

@@ -1,5 +1,6 @@
-class RatingForm < BaseForm
+# frozen_string_literal: true
 
+class RatingForm < BaseForm
   attribute :value, Integer
   attribute :post_id, Integer
 
@@ -9,6 +10,7 @@ class RatingForm < BaseForm
 
   def save
     return false unless valid?
+
     ActiveRecord::Base.transaction do
       Rating.create(value: value, post_id: post_id)
       rating_average_value = Rating.where(post_id: post_id).average(:value)

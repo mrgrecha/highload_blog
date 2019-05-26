@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateIpAddresses < ActiveRecord::Migration[5.2]
   def change
     create_table :ip_addresses do |t|

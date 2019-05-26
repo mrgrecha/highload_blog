@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PostSerializer
   include FastJsonapi::ObjectSerializer
 
@@ -7,5 +9,4 @@ class PostSerializer
   attribute :author_id do |_, params|
     !params[:skip_author_id]
   end
-
 end

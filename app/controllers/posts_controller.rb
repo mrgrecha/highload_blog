@@ -1,5 +1,6 @@
-class PostsController < ApplicationController
+# frozen_string_literal: true
 
+class PostsController < ApplicationController
   def create
     result = post_form.save
     if result

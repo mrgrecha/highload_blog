@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # As we have only 4 tables I left all seeds stuff in one file.
 # Otherwise I suggest splitting to one file per table.
 INCREASE_COEFFICIENT = 1
