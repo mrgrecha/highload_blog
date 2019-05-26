@@ -26,8 +26,7 @@ namespace :requests do
       HighloadBlogApiClient.new.create_post(request_params)
     end
 
-    result_time = time.real * 1000 < MAX_TIME_FOR_RESPONSE ? (time.real * 1000).to_s.green : (time.real * 1000).to_s.red
-    puts "Necessary time #{result_time} ms"
+    Presenters::NecessaryTimePresenter.show(time.real)
   end
 
   desc 'Rate the post '
@@ -46,8 +45,7 @@ namespace :requests do
       HighloadBlogApiClient.new.rate_the_post(request_params)
     end
 
-    result_time = time.real * 1000 < MAX_TIME_FOR_RESPONSE ? (time.real * 1000).to_s.green : (time.real * 1000).to_s.red
-    puts "Necessary time #{result_time} ms"
+    Presenters::NecessaryTimePresenter.show(time.real)
   end
 
   desc 'Get top N the best rating posts'
@@ -60,8 +58,7 @@ namespace :requests do
       HighloadBlogApiClient.new.get_top_posts(request_params)
     end
 
-    result_time = time.real * 1000 < MAX_TIME_FOR_RESPONSE ? (time.real * 1000).to_s.green : (time.real * 1000).to_s.red
-    puts "Necessary time #{result_time} ms"
+    Presenters::NecessaryTimePresenter.show(time.real)
   end
 
   desc 'Get not uniques ip addresses'
@@ -71,7 +68,6 @@ namespace :requests do
       HighloadBlogApiClient.new.get_not_uniques_ip_addresses
     end
 
-    result_time = time.real * 1000 < MAX_TIME_FOR_RESPONSE ? (time.real * 1000).to_s.green : (time.real * 1000).to_s.red
-    puts "Necessary time #{result_time} ms"
+    Presenters::NecessaryTimePresenter.show(time.real)
   end
 end
