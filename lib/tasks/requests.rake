@@ -14,15 +14,11 @@ namespace :requests do
     post_body = ENV['POST_BODY'].present? ? ENV['POST_BODY'] : Faker::Lorem.paragraphs(rand(2..8)).join(' ')
 
     request_params = {
-      author: {
-        login: author_login,
-      },
       post: {
         title: post_title,
         body: post_body,
-      },
-      ip_address: {
-        value: author_ip_address,
+        author_login: author_login,
+        author_ip_address: author_ip_address,
       },
     }
 
