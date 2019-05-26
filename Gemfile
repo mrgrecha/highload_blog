@@ -5,40 +5,34 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
-gem 'rails', '~> 5.2.3'
+gem 'rails', '~> 5.2'
 # Use postgresql as the database for Active Record
-gem 'pg', '~> 0.18'
-
-gem 'scenic'
+gem 'pg', '~> 0.21'
+# Use scenic for creating views in postgresql
+gem 'scenic', "~> 1.5"
 # Use Puma as the app server
-gem 'puma', '~> 3.0'
+gem 'puma', '~> 3.12'
 # Use faker as data generator
-gem 'faker'
+gem 'faker', "~> 1.9"
 # Use activerecord-import for bulk inserting data using ActiveRecord
-gem 'activerecord-import'
-
-gem 'colorize'
-
-gem 'httparty'
-
-gem 'dotenv-rails'
-
-gem 'fast_jsonapi'
-
-gem 'whenever'
-
-gem 'virtus'
-
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-# gem 'jbuilder', '~> 2.5'
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'activerecord-import', "~> 1.0"
+# Use colorize for beautiful output
+gem 'colorize', "~> 0.8"
+# Use http requests
+gem 'httparty', "~> 0.16"
+# Use for using .env in rails project
+gem 'dotenv-rails', "~> 2.7"
+# Use for json serialization
+gem 'fast_jsonapi', "~> 1.5"
+# Use for cron jobs
+gem 'whenever', "~> 0.11"
+# Use for form objects
+gem 'virtus', "~> 1.0"
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platform: :mri
-  gem 'pry'
+  # Use for debugging
+  gem 'pry', "~> 0.11"
+  # Use for unit-testing
   gem 'rspec-rails', '~> 3.8'
 end
 
