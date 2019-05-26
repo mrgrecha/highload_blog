@@ -9,4 +9,11 @@ namespace :db do
     TopRatingPost.refresh
     puts 'Done'.green
   end
+
+  desc "Refresh not unique ip addresses' materialized view"
+  task refresh_not_unique_ip_addresses_view: :environment do
+    puts "Refreshing not unique ip addresses' materialized view. Current time: #{Time.now}"
+    NotUniqueIpAddress.refresh
+    puts 'Done'.green
+  end
 end

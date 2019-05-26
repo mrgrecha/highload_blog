@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_25_104228) do
+ActiveRecord::Schema.define(version: 2019_05_26_183709) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,5 +61,17 @@ ActiveRecord::Schema.define(version: 2019_05_25_104228) do
   SQL
   add_index "top_rating_posts", ["average_rating"], name: "index_top_rating_posts_on_average_rating"
   add_index "top_rating_posts", ["post_id"], name: "index_top_rating_posts_on_post_id", unique: true
+
+  create_view "not_unique_ip_addresses", materialized: true, sql_definition: <<-SQL
+      SELECT ip_addresses.id,
+      ip_addresses.value AS ip_address,
+      array_agg(DISTINCT users.login) AS array_of_authors
+     FROM ((posts
+       JOIN ip_addresses ON ((ip_addresses.id = posts.ip_address_id)))
+       JOIN users ON ((users.id = posts.author_id)))
+    GROUP BY ip_addresses.id
+   HAVING (count(DISTINCT posts.author_id) > 1);
+  SQL
+  add_index "not_unique_ip_addresses", ["id"], name: "index_not_unique_ip_addresses_on_id", unique: true
 
 end
