@@ -19,15 +19,31 @@ Add your database username and password in config/database.yml
 bundle install
 bundle exec rake db:create
 bundle exec rake db:migrate
+```
+
+## Running seeds
+There are 2 ways how to run seeds:
+For the first one you need to run rails server:
+```
+bundle exec rails server
+```
+and in another tab run:
+```
 bundle exec rake db:seed
 ```
-In db/seed.rb you can find next constants. Feel free to change them to check performance. Changing INCREASE_COEFFICIENT is the easiest way to increase the number of records several times.
-```ruby
-INCREASE_COEFFICIENT = 1
-COUNT_OF_USERS = 100 * INCREASE_COEFFICIENT
-COUNT_OF_POSTS = 200_000 * INCREASE_COEFFICIENT
-COUNT_OF_IPS = 50 * INCREASE_COEFFICIENT
-AVERAGE_NUMBER_OF_RATINGS_PER_POST = 5
+It will make a response to server for each record creation. That's why I've added "fast seeds". Main idea to use them if you would like to generate a quite big database as soon as possible. To run it:
+```
+bundle exec rake fast_seeds:run
+```
+
+In .env you can find next constants. Feel free to change them to check performance. Changing INCREASE_COEFFICIENT is the easiest way to increase the number of records several times.
+```
+INCREASE_COEFFICIENT=1
+
+COUNT_OF_USERS=100
+COUNT_OF_POSTS=200000
+COUNT_OF_IPS=50
+AVERAGE_NUMBER_OF_RATINGS_PER_POST=5
 ```
 
 Running seeds can take some time. Please wait until 'Done. Seeds are created' will appear.
